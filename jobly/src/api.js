@@ -76,7 +76,7 @@ static async applyToJob(username, id) {
 }
 
 static async saveProfile(username, data) {
-        await this,request(`users/${username}`, data, 'patch');
+     let res = await this.request(`users/${username}`, data, 'patch');
         return res.user;
 }
 
