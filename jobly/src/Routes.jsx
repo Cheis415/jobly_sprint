@@ -19,7 +19,6 @@ function Routes() {
       <SignUp />
       <Login />
       <Profile />
-      <Nav />
       <HomePage />
     
     </div>
