@@ -82,7 +82,8 @@ static async saveProfile(username, data) {
 
 }
 
-export default JoblyApi
+export default JoblyApi;
+
 
 // for now, put token ("testuser" / "password" on class)
 JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
