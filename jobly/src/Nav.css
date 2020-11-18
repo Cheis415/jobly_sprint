@@ -1,0 +1,22 @@
+.nav-link {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+.navbar { 
+    text-align: justify;
+    display: inline-block;
+     border: 2px solid black; 
+ } 
+
+/* .navbar {
+    text-align: justify;
+    min-width: 500px;
+}
+.navbar:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+} */
