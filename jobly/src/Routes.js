@@ -7,7 +7,7 @@ import Login from "./Login";
 import Profile from "./Profile";
 
 import HomePage from "./HomePage";
-import { Switch, Route, Redirect, BrowserRouter, Link, NavLink } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 
 function Routes() {

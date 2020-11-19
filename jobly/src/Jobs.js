@@ -24,14 +24,14 @@ function Jobs() {
     
       
       <div>
-           <Search search={search} />
+           <Search searching={search} />
         {jobs.length
             ? (
                 <div>
                   {jobs.map(j => (
                       <JobCard
 
-                          company_handle={j.company_handle}
+                          companyHandle={j.companyHandle}
                           title={j.title}
                           salary={j.salary}
                           equity={j.equity}

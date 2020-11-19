@@ -15,7 +15,6 @@ import Search from "./Search";
   async function search(name) {
     let result = await JoblyApi.getCompanies(name);
     setCompanies(result);
-    console.log(result);  
   }
 
   if (!companies) return "Loading....";
@@ -23,7 +22,7 @@ import Search from "./Search";
   return (   
       
         <div>
-           <Search search={search} />
+           <Search searching={search} />
         {companies.length
             ? (
                 <div>
