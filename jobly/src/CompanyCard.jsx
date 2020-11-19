@@ -2,13 +2,12 @@
 import React from 'react';
 import JoblyApi from './api';
 
-function CompanyCard({name, handle, description, logoUrl}) {
+function CompanyCard({ handle, description, logoUrl}) {
 
                         
     return (
         <div>
            <h1>{handle}</h1>
-           <h3> {name} </h3>
            <p> {description} </p>
            <img src={logoUrl} />
         </div>

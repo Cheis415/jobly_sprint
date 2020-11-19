@@ -1,38 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import JoblyApi from "./api";
 import CompanyCard from './CompanyCard';
+import Search from "./Search";
 
  function Companies() {
 
   let [companies, setCompanies] = useState(null);
   
-  // name: "Arnold, Berger, and Townsend",
-  // description: "Kind crime at perhaps beat. Enjoy deal purpose serve begin or thought. Congress everything miss tend.",
-  // logoUrl: null }]);
 
-  // async function search(name) {
-  //   let result = await JoblyApi.getCompanies(name);
-  //   setCompanies(result);
-  //   console.log(result);  
-  // }
-    async function myFunction() {
-      console.log(await JoblyApi.getCompanies());
-     let companies = await JoblyApi.getCompanies();
-     setCompanies(companies);
-    }
+  useEffect(function getCompaniesOnMount() {
+    search();
+  }, []);
 
+  async function search(name) {
+    let result = await JoblyApi.getCompanies(name);
+    setCompanies(result);
+    console.log(result);  
+  }
 
-       
+  if (!companies) return "Loading....";
+      
   return (   
-      <div>
-          {companies.map(c => (
+      
+        <div>
+           <Search search={search} />
+        {companies.length
+            ? (
+                <div>
+                  {companies.map(c => (
                       <CompanyCard
+                          key={c.handle}
                           handle={c.handle}
                           name={c.name}
                           description={c.description}
                           logoUrl={c.logoUrl}
                       />
-                  ))}               
+                  ))}
+                </div>
+            ) : (
+                <p className="lead">Sorry, no results were found!</p>
+            )}
        </div>
   );
 }
