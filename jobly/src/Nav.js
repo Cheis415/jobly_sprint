@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import './Nav.css';
+import UserContext from "./UserContext";
+
+
 
 
 function Nav() {
+  const obj = useContext(UserContext);
+  console.log(obj)
+  if (obj.currUser) {
+    return (<div>
+      <h1>HEEEEYYYYY</h1>
+    </div>)
+  }
   return (
     
        <ul className = "navbar" >

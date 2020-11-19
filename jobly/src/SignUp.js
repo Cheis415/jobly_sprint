@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import JoblyApi from './api';
-import UserContext from './UserContext';
+
 
 
 
@@ -17,18 +17,6 @@ function SignUp() {
 
   const [form, setForm] = useState(initState);
 
-  // async function register(data) {
-  //   let result = await JoblyApi.register(data);
-  //   setCompanies(result);
-  // }
-
-//   static async register(data) {
-//     let res = await this.request('auth/register', data, 'post');
-//     return res.token;
-// }
-
-
-
    async function handleClick(evt) {
      evt.preventDefault();
      console.log("This is it....", evt);
@@ -44,7 +32,13 @@ function SignUp() {
       console.log(result);
 
       return result;
-   }
+    }
+    let blerp = handleClick()
+          if (blerp) {
+            return (<div>
+              <h1>YOU ARE LOGGED IN</h1>
+            </div>)
+          } 
       console.log(form);
   return (
     <form className="Form" name="signup">
