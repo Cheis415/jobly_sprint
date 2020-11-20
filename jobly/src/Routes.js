@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import Companies from "./Companies";
 import Company from "./Company";
 import Jobs from "./Jobs";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Profile from "./Profile";
+import UserContext from "./UserContext";
 
 import HomePage from "./HomePage";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -12,6 +13,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 
 function Routes() {
+  const obj = useContext(UserContext);
   return (
     <div className="pt-5">
       <Switch>
@@ -25,7 +27,7 @@ function Routes() {
         </Route>
 
         <Route exact path="/signup">
-          <SignUp />
+        {obj.currUser ? <Redirect to="/" /> : <SignUp />}
         </Route>
 
         <Route exact path="/companies">

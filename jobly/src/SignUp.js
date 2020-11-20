@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import JoblyApi from './api';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 
 
@@ -21,18 +21,11 @@ async function handleSubmit(evt) {
      evt.preventDefault()
 
       let result = await JoblyApi.register(formData);
-
-      if (result.success) {
-        history.push('/companies');
-      } else {
-         alert('Invalid inputs');
-      }
-
-     JoblyApi.token = result;
-    }
+      JoblyApi.token = result;
+       console.log(JoblyApi.token);
+       history.push("/");
+  }
       
-  
-
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(fData => ({
