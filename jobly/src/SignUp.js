@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import JoblyApi from './api';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -7,64 +8,64 @@ import JoblyApi from './api';
 
 function SignUp() {
 
-  let initState =
-  {
-    username:'', 
-    firstName : '', 
-    lastName:'',
-     email:'',
-     password:'' };
+  const history = useHistory();
+  const [formData, setFormData] = useState({   username:'', 
+  firstName: '',
+  lastName: '',
+  email:'',
+   password:''
+});
+  
 
-  const [form, setForm] = useState(initState);
+async function handleSubmit(evt) {
+     evt.preventDefault()
 
-   async function handleClick(evt) {
-     evt.preventDefault();
-     console.log("This is it....", evt);
-      let user = await document.getElementById('username').value;
-      let first = await document.getElementById('firstName').value;
-      let last = await document.getElementById('lastName').value;
-      let em = await document.getElementById('email').value;
-      let pass = await document.getElementById('password').value;
+      let result = await JoblyApi.register(formData);
 
-      let userData = {'username': user, 'firstName': first, 'lastName': last, 'email': em, 'password': pass}; 
-      setForm(userData);
-      let result = await JoblyApi.register(userData);
-      console.log(result);
+      if (result.success) {
+        history.push('/companies');
+      } else {
+         alert('Invalid inputs');
+      }
 
-      return result;
+     JoblyApi.token = result;
     }
-    let blerp = handleClick()
-          if (blerp) {
-            return (<div>
-              <h1>YOU ARE LOGGED IN</h1>
-            </div>)
-          } 
-      console.log(form);
+      
+  
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(fData => ({
+      ...fData,
+      [name]: value,
+    }));
+  }
+
   return (
-    <form className="Form" name="signup">
+    <form className="Form" name="signup" onSubmit={handleSubmit}>
       <h1>Registration Form</h1>
       <br />
       <label htmlFor="username"> Enter username
-      <input  id="username" />
+      <input  id="username" value = {formData.username} name="username" onChange={handleChange} />
       </label>
       <br />
       <label htmlFor="firstName"> Enter first name:
-      <input id="firstName" />
+      <input id="firstName" value = {formData.firstName} name="firstName" onChange={handleChange} />
       </label>
       <br />
       <label htmlFor="lastName"> Enter last name:
-      <input id="lastName" />
+      <input id="lastName" value = {formData.lastName} name="lastName" onChange={handleChange} />
       </label>
       <br />
       <label htmlFor="email"> Enter email: 
-      <input id="email" />
+      <input id="email" value = {formData.email} name="email" onChange={handleChange} />
       </label>
       <br />
       <label htmlFor="password"> Enter password: 
-      <input type="password" id="password" />
+      <input type="password" id="password" value = {formData.password} name="password" onChange={handleChange} />
       </label>
       <br />
-      <button htmlFor="signup" onClick= {handleClick}>Submit</button>
+      <button htmlFor="signup">Submit</button>
     
     </form>
   );
